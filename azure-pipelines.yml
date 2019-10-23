@@ -75,7 +75,7 @@ stages:
               containers: |
                 $(containerRegistry)/$(imageRepository):$(tag)
 
-  - deployment: Deploy
+  - deployment: DeployPR
     displayName: Deploy job
     condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/pull/'))
     pool: default
