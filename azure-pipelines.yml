@@ -19,8 +19,6 @@ variables:
   imagePullSecret: 'desattiracr1777a0e7-auth'
 
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
-  
   k8sNamespaceForPR: '$(System.pullRequest.sourceBranch)'
 
 stages:
