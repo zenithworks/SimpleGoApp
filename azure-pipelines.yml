@@ -38,9 +38,6 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-          
-    - upload: manifests
-      artifact: manifests
 
 - stage: Deploy
   displayName: Deploy stage
@@ -68,8 +65,8 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/manifests/deployment.yml
-                $(Pipeline.Workspace)/manifests/service.yml
+                manifests/deployment.yml
+                manifests/service.yml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
@@ -108,8 +105,8 @@ stages:
               action: deploy
               namespace: $(k8sNamespaceForPR)
               manifests: |
-                $(Pipeline.Workspace)/manifests/deployment.yml
-                $(Pipeline.Workspace)/manifests/service.yml
+                manifests/deployment.yml
+                manifests/service.yml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
