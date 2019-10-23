@@ -19,7 +19,7 @@ variables:
   imagePullSecret: 'desattiracr1777a0e7-auth'
 
   # Agent VM image name
-  k8sNamespaceForPR: '$(System.pullRequest.sourceBranch)'
+  k8sNamespaceForPR: '$(system.pullRequest.sourceBranch)'
 
 stages:
 - stage: Build
