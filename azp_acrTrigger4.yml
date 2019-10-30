@@ -58,7 +58,7 @@ stages:
     displayName: Deploy    
     pool:
       vmImage: $(vmImageName)
-    environment: 'zenithworksSimpleGoApp.ignitedemo2'
+    environment: 'zenithworksSimpleGoApp-1533.ignitedemo2'
     strategy:
       canary:
         increments: [25, 50]
@@ -81,7 +81,7 @@ stages:
             inputs:
               action: $(strategy.action)
            #   kubernetesServiceConnection: ''
-              namespace: 'ignitedemo1'
+              namespace: 'ignitedemo2'
               strategy: $(strategy.name)
               percentage: $(strategy.increment)
               manifests: |
@@ -105,7 +105,7 @@ stages:
               inputs:
                 action: 'reject'
                # kubernetesServiceConnection: ''
-                namespace: 'ignitedemo1'
+                namespace: 'ignitedemo2'
                 strategy: $(strategy.name)
                 manifests: |
                   $(Pipeline.workspace)/manifests/deployment.yml
