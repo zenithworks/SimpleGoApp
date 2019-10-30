@@ -15,7 +15,7 @@ resources:
 
 variables:
   system.debug: 'true'
-  PUBLISH_PIPELINE_METADATA: 'true'
+  # PUBLISH_PIPELINE_METADATA: 'true'
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '53d6f92a-d6ec-476d-b682-8ce664e9185f'
   imageRepository: 'zenithworkssimplegoapp'
