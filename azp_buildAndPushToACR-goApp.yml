@@ -13,7 +13,7 @@ variables:
   containerRegistry: 'raireg1.azurecr.io'
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
-  imagePullSecret: 'raireg13255727b-auth'
+  imagePullSecret: 'raireg12245c8ae-auth'
 
 
 
