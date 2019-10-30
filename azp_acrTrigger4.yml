@@ -32,9 +32,9 @@ variables:
 
 stages:
 - stage: Build
-  displayName: Pre-prod
+  displayName: Pre Prod config
   jobs:  
-  - job: Pre-prod-config
+  - job: PreProdConfig
     displayName: Build
     pool: 'demopool'
     steps:
