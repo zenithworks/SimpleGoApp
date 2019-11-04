@@ -1,4 +1,4 @@
-| -------- | --------|--------|
+
 | Go Lang |  Azure Web App, Virtual Machine, AKS| |
 
 # Sample Go web application
