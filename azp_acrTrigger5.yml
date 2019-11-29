@@ -15,16 +15,15 @@ resources:
 variables:
 
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'f810ed1c-4836-47aa-982f-cc7c09b8dbc3'
-  imageRepository: 'zenithworksahsimplegorepo'
+  dockerRegistryServiceConnection: 'b27a6900-18df-4587-bb27-d5dd8e029d24'
+  imageRepository: 'zenithworkssimplegoapp'
   containerRegistry: 'raireg1.azurecr.io'
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
-  imagePullSecret: 'raireg12085f4a6-auth'
+  imagePullSecret: 'raireg1907114f7-auth'
+
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'  
-  # Name of the new namespace being created to deploy the PR changes.
-  k8sNamespaceForPR: '$(system.pullRequest.sourceBranch)'
+  vmImageName: 'ubuntu-latest'
 
 
 #variables:
@@ -68,7 +67,7 @@ stages:
     displayName: Deploy    
     pool:
       vmImage: $(vmImageName)
-    environment: 'zenithworksahsimpleGoRepo.test-traceabilitiy'
+    environment: 'zenithworksSimpleGoApp-1012.trace'
     strategy:
       canary:
         increments: [25, 50]
