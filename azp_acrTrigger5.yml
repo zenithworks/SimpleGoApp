@@ -12,22 +12,32 @@ resources:
     repository: zenithworkssimplegoapp
     trigger: true
 
-
 variables:
-  system.debug: 'true'
-  # PUBLISH_PIPELINE_METADATA: 'true'
+
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '53d6f92a-d6ec-476d-b682-8ce664e9185f'
-  imageRepository: 'zenithworkssimplegoapp'
+  dockerRegistryServiceConnection: 'f810ed1c-4836-47aa-982f-cc7c09b8dbc3'
+  imageRepository: 'zenithworksahsimplegorepo'
   containerRegistry: 'raireg1.azurecr.io'
   dockerfilePath: '**/Dockerfile'
-  tag: '$(resources.container.myACRContainer2.tag)'
-  imagePullSecret: 'raireg12245c8ae-auth'
-  
-  
- 
+  tag: '$(Build.BuildId)'
+  imagePullSecret: 'raireg12085f4a6-auth'
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  vmImageName: 'ubuntu-latest'  
+  # Name of the new namespace being created to deploy the PR changes.
+  k8sNamespaceForPR: '$(system.pullRequest.sourceBranch)'
+
+
+#variables:
+#  system.debug: 'true'
+#  # PUBLISH_PIPELINE_METADATA: 'true'
+#  # Container registry service connection established during pipeline creation
+#  dockerRegistryServiceConnection: '53d6f92a-d6ec-476d-b682-8ce664e9185f'
+#  imageRepository: 'zenithworkssimplegoapp'
+#  containerRegistry: 'raireg1.azurecr.io'
+#  dockerfilePath: '**/Dockerfile'
+#  tag: '$(resources.container.myACRContainer2.tag)'
+#  imagePullSecret: 'raireg12245c8ae-auth'
+
 
 
 stages:
@@ -58,7 +68,7 @@ stages:
     displayName: Deploy    
     pool:
       vmImage: $(vmImageName)
-    environment: 'zenithworksSimpleGoApp-1533.ignitedemo2'
+    environment: 'zenithworksahsimpleGoRepo.test-traceabilitiy'
     strategy:
       canary:
         increments: [25, 50]
@@ -81,7 +91,7 @@ stages:
             inputs:
               action: $(strategy.action)
            #   kubernetesServiceConnection: ''
-              namespace: 'ignitedemo2'
+              namespace: 'test-traceabilitiy'
               strategy: $(strategy.name)
               percentage: $(strategy.increment)
               manifests: |
@@ -105,7 +115,7 @@ stages:
               inputs:
                 action: 'reject'
                # kubernetesServiceConnection: ''
-                namespace: 'ignitedemo2'
+                namespace: 'test-traceabilitiy'
                 strategy: $(strategy.name)
                 manifests: |
                   $(Pipeline.workspace)/manifests/deployment.yml
